@@ -16,6 +16,10 @@
     set.seed(3)
     x = rnorm(1000)
     y = rgamma(1000, 1, 1)
+    # -0.08020344
     cor(x,y)
-    cor(x,y[sortCorr(x,y,rho=0.50)])
-    cor(x,y[sortCorr(x,y,rho=0.10)])
+    # 0.5104921
+    cor(x,y[sortCorr(x,y,rho=0.50)]) 
+    #  0.09558201
+    cor(x,y[sortCorr(x,y,rho=0.10)])  
+
