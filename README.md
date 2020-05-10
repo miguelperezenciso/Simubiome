@@ -17,9 +17,11 @@ As input, the script requires a nxp **X** matrix containing genotypes and nxq **
 
 Effects are sampled from gamma distributions (see publication and code for details).
 
-### Usage
+### Models and usage
 
+    s = SimuBiome(X, B, Bclust=Bclust, h2=h2, b2=b2, Nqtl_y=Nqtl_y, Notu_y=Notu_y, Notu_y_g=Notu_y_g)
 
+### Output
 
 ### Sortcorr
 This function takes two vectors x and y and allows reordering y such that cor(x,reordered(y)) = rho, where rho is the desired correlation between x and y. This function is critical to reorder abundances such that a correlation between genotypic values and abundances is established. In so doing, a genetic basis of given abundances is mimicked without modifying the observed data. OTU reordering can be done within cluster of correlated abundances in order to preserve - to an extent - the covariance between different OTU abundances.
