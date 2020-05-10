@@ -17,16 +17,18 @@ As input, the script requires a nxp **X** matrix containing genotypes and nxq **
 
 Effects are sampled from gamma distributions (see publication and code for details).
 
-### Models and usage
-Simubiome allows five generic causality models (Fig. 1). 
+### Models
+The amount of variance explained by genome **G** and microbiome **B** are determined by the heritability (**h2**) and microbiability (**b2**), respectively. Simubiome allows five generic causality models (Fig. 1). 
 
-* Joint model: Both genome **G** and microbiome **B** act independently on **y**. It is perhaps the most widely assumed model, implicitly or explicitly, in the literature.
-* Recursive model:
-* Microbiome model: Only **B** has an effect on **y**, and **G** is only noise.
-* Indirect model:
-* Genome model: Only **G** has an effect on **y**, and **B** is only noise.
+* **Joint model**: Both genome **G** and microbiome **B** act independently on **y**. It is perhaps the most widely assumed model, implicitly or explicitly, in the literature.
+* **Recursive model**: The Recursive model is similar to the Joint model, except that some causative OTU abundances are under partial genetic control. Therefore, the influence of the genome is both direct and indirect (microbiome mediated). We do not assume that a given SNP has simultaneously direct and indirect effects, we rather hypothesize that the genes controlling OTU abundance are different from those with a direct effect on the phenotype. We also do not assume that all OTU abundances are under genetic control. It may be that non causative OTUs are under genetic control but these are irrelevant for our purposes and are not modeled here.
+* **Microbiome model**: Only **B** has an effect on **y**, and **G** is only noise.
+* **Indirect model**: The genome affects the phenotype but only indirectly. In this case, the phenotype is controlled by a number of causative OTUs and part of these OTUs’ abundances are under partial genetic control. This would be equivalent to a scenario where a phenotype is controlled by gene expression levels and expression is in turn controlled genetically.
+* **Genome model**: Only **G** has an effect on **y**, and **B** is only noise.
 
-* . The amount of variance explained by G and B are determined by the heritability (h2) and microbiability (b2), respectively. This is the simplest model once we know the trait is under the influence of both heredity and microbiome. It is perhaps the most widely assumed model, implicitly or explicitly, in the literature, e.g., [11,18,20]. Simplifications of the Joint model lead to the Genome and Microbiome models when either the microbiome or the genome do not affect the phenotype, respectively. In any case, we take that SNP and microbiome data are available even if they may simply add noise to the analysis. The Recursive model is similar to the Joint model, except that allows for some causative OTU abundances to be under partial genetic control. Therefore, the influence of the genome is both direct and indirect (microbiome mediated). Note that we do not assume that a given SNP has simultaneously direct and indirect effects, we rather hypothesize that the genes controlling OTU abundance are different from those with a direct effect on the phenotype. We also do not assume that all OTU abundances are under genetic control. It may be that non causative OTUs are under genetic control but these are irrelevant for our purposes and are not modeled here. In the Indirect model, finally, the genome affects the phenotype but only indirectly. In this case, the phenotype is controlled by a number of causative OTUs and part of these OTUs’ abundances are under genetic control. This would be equivalent to a scenario where a phenotype is controlled by gene expression levels and expression is in turn controlled genetically.
+In any case, we take that SNP and microbiome data are available even if they may simply add noise to the analysis.  
+
+### Usage
 
     s = SimuBiome(X, B, Bclust=Bclust, h2=h2, b2=b2, Nqtl_y=Nqtl_y, Notu_y=Notu_y, Notu_y_g=Notu_y_g)
 
