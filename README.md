@@ -1,6 +1,9 @@
 # Simubiome
-## Accompanying code to
+### Allows simulation of complex phenotypes mediated by genome and/or microbiome
+### Accompanying code to
 Opportunities and limits of using microbiome data for complex trait prediction. M. Pérez-Enciso, L.M. Zingaretti, Y. Ramayo-Caldas, G. de los Campos (submitted)
+#### M Pérez-Enciso with help from LM Zingaretti
+#### miguel.perez@uab.es
 
 
     #------------------------------
