@@ -1,4 +1,7 @@
 # Simubiome
+## Accompanying code to
+Opportunities and limits of using microbiome data for complex trait prediction. M. Pérez-Enciso, L.M. Zingaretti, Y. Ramayo-Caldas, G. de los Campos (submitted)
+
 
     #------------------------------
     sortCorr <- function(x, y, rho) {
