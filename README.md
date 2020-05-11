@@ -1,6 +1,5 @@
-# Simubiome
-### Simulation of complex phenotypes mediated by genome and/or microbiome.
-#### M Pérez-Enciso (miguel.perez@uab.es) with help from LM Zingaretti
+# Simubiome: Simulation of complex phenotypes mediated by genome and/or microbiome.
+### M Pérez-Enciso (miguel.perez@uab.es) with help from LM Zingaretti
 
 ### Citation
 
@@ -12,7 +11,7 @@ https://miguelperezenciso.github.io/Simubiome/
 
 [Simubiome.Rmd](https://github.com/miguelperezenciso/Simubiome/blob/master/Simubiome.Rmd) contains list of commands and typical usage
 
-[simuscript.R](https://github.com/miguelperezenciso/Simubiome/blob/master/simuscript.R) 
+[simuscript.R](https://github.com/miguelperezenciso/Simubiome/blob/master/simuscript.R) contains script to load genotypes and abundances, simulate and analyze simulated data.
 
 [simubiome.R](https://github.com/miguelperezenciso/Simubiome/blob/master/simubiome.R) contains all functions.
 
@@ -52,9 +51,9 @@ A SimuBiome object contains:
 * **gb**: vector of size Nind containing microbiome contribution to **y**
 * **b_otu**: Notu size vector containing causative otu effects     
 * **b_qtl**: Nqtl size vector containing causative snp effects     
-* **qtl_list**: 
-* **otu_list**:
-* **otu_qtl_list**:
+* **qtl_list**: causative snp ids (snp positions in X)
+* **otu_list**: causative otu ids (otu positions in B)
+* **otu_qtl_list**: qtl affecting otus ids (snp positions in X)
 
 ### Sortcorr
 This function takes two vectors x and y and allows reordering y such that cor(x,reordered(y)) = rho, where rho is the desired correlation between x and y. This function is critical to reorder abundances such that a correlation between genotypic values and abundances is established. In so doing, a genetic basis of given abundances is mimicked without modifying the observed data. OTU reordering can be done within cluster of correlated abundances in order to preserve - to an extent - the covariance between different OTU abundances.
