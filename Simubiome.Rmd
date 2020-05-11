@@ -1,0 +1,157 @@
+---
+title: "Simubiome"
+author: "Miguel Perez-Enciso (miguel.perez@uab.es)"
+date: "5/10/2020"
+output: html_document
+---
+
+### Load source code
+
+```{r setup, include=T}
+# Modify to include actual path
+knitr::opts_chunk$set(echo = T)
+source("simubiome.R")
+```
+
+### Read data
+
+```{r readdata, results='markup'}
+# folder containing snp and otu data
+ddata = 'data/'
+
+# read bacteria
+B = read.biome(paste0(ddata,'journal.pgen.1007580.s005.txt.gz'))
+# read archaea (not used)
+A = read.biome(paste0(ddata,'journal.pgen.1007580.s006.txt.gz'))
+# read genotypes
+X = read.gen(paste0(ddata,'gen.txt.gz'))
+
+# N SNPs
+Nsnp = nrow(X)
+# N individuals
+Nind = ncol(X)
+# N OTUs
+Notu = nrow(B)
+try (if (Nind != ncol(B)) stop('Nind in B and X does not match'))
+
+print(c(Nsnp, Notu, Nind))
+```
+### Main parameters (check main help)
+```{r , results='markup'}
+h2 = 0.25
+b2 = 0.25
+Nqtl_y = 100
+Notu_y = 25
+Notu_y_g = 25
+Nqtl_otu = 10
+Nclust = 500
+Nmiss = 75
+```
+
+### Clustering (optional)
+```{r , results='markup'}
+Cl = hclust(dist(B),method="ward.D2")
+Bclust = cutree(Cl,Nclust)
+```
+
+### Simulate data
+```{r , results='markup'}
+# If no clustering, Bclust=NULL
+s = SimuBiome(X, B, Bclust=Bclust, h2=h2, b2=b2, Nqtl_y=Nqtl_y, Notu_y=Notu_y, Notu_y_g=Notu_y_g)
+# data saving
+save(s,file='simubiome.Rdata')
+print(names(s))
+```
+
+### Output data
+```{r , results='markup'}
+# simulated phenotype
+y = s$y
+hist(y, main='Simulated phenotypes')
+# returns reordered B, always in log scale,
+# B is shuffled in every call to SimuBiome
+B = s$B
+```
+
+```{r , results='markup'}
+#--> some plots
+par(mfrow=c(2,2))
+hist(s$gq, main='Individual Genetic values')
+hist(s$gb, main='Individual Microbiome values')
+hist(abs(s$b_qtl), main='Genetic coefficients (abs values)')
+hist(abs(s$b_otu), main='Microbiome coefficients (abs values)')
+print(c('Nqtl ',length(s$b_qtl)))
+print(c('Notu causative ',length(s$b_otu)))
+```
+
+### Data preparation
+```{r , results='markup'}
+
+#--> scale and transpose data
+X = scale(t(X))
+B = scale(t(B))
+y = scale(y)
+
+#--> prediction
+tst = sample(seq(length(y)),size=Nmiss)
+yNA = y
+yNA[tst] = NA
+```
+
+### Running Bayes C
+#### WARNING: produces huge files and can take long
+```{r , results='markup'}
+# These are prob priors for a variable to enter into the model
+probin=0.001
+p0=5
+
+# Model with G and B, only 10k iterations for example, try at least 40k
+fm_Cgb = doBayesC(yNA, X=X, B=B, out='bayCgb_', pi1=probin, pi2=probin, p0=p0, nIter=1e4)
+
+# Only G
+# fm_Cg = doBayesC(yNA, X=X, out='bayCg_', pi1=probin, p0=p0)
+
+# Only B
+# fm_Cb = doBayesC(yNA, B=B, out='bayCb_', pi2=probin, p0=p0)
+# c = list('fm_Cgb'=fm_Cgb,'fm_Cg'=fm_Cg,'fm_Cb'=fm_Cb)
+# save(c,file='fmc.Rdata')
+```
+
+### Predictive accuracy
+```{r , results='markup'}
+
+# Predicted y Bayes Cgb
+yhat = fm_Cgb$fm$yHat[tst]
+
+# plot y vs. yhat
+plot(y[tst], yhat, xlab='Observed y', ylab='Predicted y')
+
+rho = cor(y[tst], yhat)
+print(rho)
+```
+
+### Estimated h2, b2, cov(g,b)
+```{r , results='markup'}
+# This is matrix implementation of 
+# https://github.com/gdlc/BGLR-R/blob/master/inst/md/heritability.md
+# (second method)
+G=readBinMat('bayCgb_ETA_1_b.bin')
+C=readBinMat('bayCgb_ETA_2_b.bin')
+u=G%*%t(X)
+b=C%*%t(B)
+Y=matrix(rep(y,nrow(G)), nrow = nrow(G), byrow=TRUE)
+varU=apply(u,1,var)
+varB=apply(b,1,var)
+covUB=(apply(u+b,1,var) - varU - varB)*0.5
+varE=apply(Y-u-b,1,var)
+
+h2g=varU/(varU+varB+varE)
+h2b=varB/(varU+varB+varE)
+h2gb=covUB/(varU+varB+varE)
+
+# plots
+plot(density(h2g),xlim=c(-0.05,1),main=c('Bayes Cgb',rho),xlab='var component')
+lines(density(h2b),col='blue',lty=2)
+lines(density(h2gb),col='red',lty=3)
+print(c(mean(h2g),mean(h2b),mean(h2gb)))
+```
