@@ -42,13 +42,9 @@ In any case, we take that SNP and microbiome data are available even if they may
 |-----------| :------------- | :-----:|:------:|:---------:|:--------:|:-----------:|
 | **Joint** | g-->y<--b      | >0    |  >0    |  >0       |  >0      |    0        |
 | **Genome** | g-->y         | >0    |   0    |  >0       |   0      |    0        |
-
-#    Indirect     g-->b-->y           ==> Nqtl_y=0, Notu_y>0, Notu_y_g>0, h2=0, b2>0
-#    Microbiome   b-->y               ==> Nqtl_y=0, Notu_y>0, Notu_y_g=0, h2=0, b2>0
-#    Independent            ==> Nqtl_y>0, Notu_y>0, Notu_y_g=0, h2>0, b2>0
-#    Recursve     g-->y<--b<--g       ==> Nqtl_y>0, Notu_y>0, Notu_y_g>0, h2>0, b2>0
-#    Genome       g-->y               ==> Nqtl_y>0, Notu_y=0, Notu_y_g=0, h2>0, b2=0
-
+| **Microbiome** | b-->y         | 0    |   >0    |  0       |   >0      |    0        |
+| **Indirect** | g-->b-->y         | 0    |   >0    |  0       |   >0      |    >0        |
+| **Recursive** | g-->y<--b<--g        | >0    |   >0    |  >0       |   >0      |    >0        |
 
 ### Usage
 
