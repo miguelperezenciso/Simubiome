@@ -40,8 +40,8 @@ In any case, we take that SNP and microbiome data are available even if they may
 
 | Model     | Meaning        |  h2    |   b2   |  Nqtl_y   | Notu_y   |   Notu_y_g  |
 |-----------| :------------- | :-----:|:------:|:---------:|:--------:|:-----------:|
-| Joint     | g-->y<--b      | >0    |  >0    |  >0       |  >0      |    0        |
-
+| **Joint** | g-->y<--b      | >0    |  >0    |  >0       |  >0      |    0        |
+| **Genome** | g-->y         | >0    |   0    |  >0       |   0      |    0        |
 
 #    Indirect     g-->b-->y           ==> Nqtl_y=0, Notu_y>0, Notu_y_g>0, h2=0, b2>0
 #    Microbiome   b-->y               ==> Nqtl_y=0, Notu_y>0, Notu_y_g=0, h2=0, b2>0
