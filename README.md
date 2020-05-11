@@ -1,4 +1,5 @@
-# Simubiome: Simulation of complex phenotypes mediated by genome and/or microbiome.
+# Simubiome: 
+## Simulation of complex phenotypes mediated by genome and/or microbiome.
 ### M Pérez-Enciso (miguel.perez@uab.es) with help from LM Zingaretti
 
 ### Citation
@@ -28,15 +29,15 @@ As input, the script requires a nxp **X** matrix containing genotypes and nxq **
 Effects are sampled from gamma distributions (see publication and code for details).
 
 ### Models
-The amount of variance explained by genome **G** and microbiome **B** are determined by the heritability (**h2**) and microbiability (**b2**), respectively. Simubiome allows five generic causality models (Fig. 1). 
+The amount of variance explained by genome **G** and microbiome **B** are determined by the heritability (**h2**) and microbiability (**b2**), respectively. Simubiome allows five generic causality models (Fig. 1 in main paper). In any case, we take that SNP and microbiome data are available even if they may simply add noise to the analysis.
 
 * **Joint model**: Both genome **G** and microbiome **B** act independently on **y**. It is perhaps the most widely assumed model, implicitly or explicitly, in the literature.
-* **Recursive model**: The Recursive model is similar to the Joint model, except that some causative OTU abundances are under partial genetic control. Therefore, the influence of the genome is both direct and indirect (microbiome mediated). We do not assume that a given SNP has simultaneously direct and indirect effects, we rather hypothesize that the genes controlling OTU abundance are different from those with a direct effect on the phenotype. We also do not assume that all OTU abundances are under genetic control. It may be that non causative OTUs are under genetic control but these are irrelevant for our purposes and are not modeled here.
+* **Genome model**: Only **G** has an effect on **y**, and **B** is only noise.
 * **Microbiome model**: Only **B** has an effect on **y**, and **G** is only noise.
 * **Indirect model**: The genome affects the phenotype but only indirectly. In this case, the phenotype is controlled by a number of causative OTUs and part of these OTUs’ abundances are under partial genetic control. This would be equivalent to a scenario where a phenotype is controlled by gene expression levels and expression is in turn controlled genetically.
-* **Genome model**: Only **G** has an effect on **y**, and **B** is only noise.
+* **Recursive model**: The Recursive model is similar to the Joint model, except that some causative OTU abundances are under partial genetic control. Therefore, the influence of the genome is both direct and indirect (microbiome mediated). We do not assume that a given SNP has simultaneously direct and indirect effects, we rather hypothesize that the genes controlling OTU abundance are different from those with a direct effect on the phenotype. We also do not assume that all OTU abundances are under genetic control. It may be that non causative OTUs are under genetic control but these are irrelevant for our purposes and are not modeled here.
 
-In any case, we take that SNP and microbiome data are available even if they may simply add noise to the analysis.
+The following Table summarizes the different model specifications.
 
 | Model     | Meaning        |  h2    |   b2   |  Nqtl_y   | Notu_y   |   Notu_y_g  |
 |-----------| :------------- | :-----:|:------:|:---------:|:--------:|:-----------:|
