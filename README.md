@@ -89,3 +89,4 @@ This function takes two vectors x and y and allows reordering y such that cor(x,
     #  0.09558201
     cor(x,y[sortCorr(x,y,rho=0.10)])  
 
+**Enjoy!**
