@@ -19,11 +19,11 @@ https://miguelperezenciso.github.io/Simubiome/
 
 ### Input
 As input, the script requires a nxp **X** matrix containing genotypes and nxq **B** matrix containing OTU abundances. Parameters are
-* h2: heritability
-* b2: microbiability (b2+h2<1)
-* Nqtl_y: number of causative SNPs
-* Notu_y: number of causative OTUs
-* Notu_y_g: number of causative OTUs with a genetic basis (Notu_y_g <= Notu_y). Each of those is assumed to be determined by Nqtl_otu=10 SNPs (independently sampled of Nqtl_y SNPs). Heritabilities are sampled from gamma distributions (see code).
+* **h2**: heritability
+* **b2**: microbiability (b2+h2<1)
+* **Nqtl_y**: number of causative SNPs
+* **Notu_y**: number of causative OTUs
+* **Notu_y_g**: number of causative OTUs with a genetic basis (Notu_y_g <= Notu_y). Each of those is assumed to be determined by Nqtl_otu=10 SNPs (independently sampled of Nqtl_y SNPs). Heritabilities are sampled from gamma distributions (see code).
 
 Effects are sampled from gamma distributions (see publication and code for details).
 
@@ -38,14 +38,14 @@ The amount of variance explained by genome **G** and microbiome **B** are determ
 
 In any case, we take that SNP and microbiome data are available even if they may simply add noise to the analysis.
 
-| Model     | h2    |   b2   |  Nqtl_y   | Notu_y   |   Notu_y_g  |
-|-----------|:-----:|:------:|:---------:|:--------:|:-----------:|
-| Joint     | >0    |  >0    |  >0       |  >0      |    0        |
+| Model     | Meaning        |  h2    |   b2   |  Nqtl_y   | Notu_y   |   Notu_y_g  |
+|-----------| :------------- | :-----:|:------:|:---------:|:--------:|:-----------:|
+| Joint     | g-->y<--b      | >0    |  >0    |  >0       |  >0      |    0        |
 
 
 #    Indirect     g-->b-->y           ==> Nqtl_y=0, Notu_y>0, Notu_y_g>0, h2=0, b2>0
 #    Microbiome   b-->y               ==> Nqtl_y=0, Notu_y>0, Notu_y_g=0, h2=0, b2>0
-#    Independent  g-->y<--b           ==> Nqtl_y>0, Notu_y>0, Notu_y_g=0, h2>0, b2>0
+#    Independent            ==> Nqtl_y>0, Notu_y>0, Notu_y_g=0, h2>0, b2>0
 #    Recursve     g-->y<--b<--g       ==> Nqtl_y>0, Notu_y>0, Notu_y_g>0, h2>0, b2>0
 #    Genome       g-->y               ==> Nqtl_y>0, Notu_y=0, Notu_y_g=0, h2>0, b2=0
 
