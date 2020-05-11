@@ -36,7 +36,19 @@ The amount of variance explained by genome **G** and microbiome **B** are determ
 * **Indirect model**: The genome affects the phenotype but only indirectly. In this case, the phenotype is controlled by a number of causative OTUs and part of these OTUs’ abundances are under partial genetic control. This would be equivalent to a scenario where a phenotype is controlled by gene expression levels and expression is in turn controlled genetically.
 * **Genome model**: Only **G** has an effect on **y**, and **B** is only noise.
 
-In any case, we take that SNP and microbiome data are available even if they may simply add noise to the analysis.  
+In any case, we take that SNP and microbiome data are available even if they may simply add noise to the analysis.
+
+| Model     | h2    |   b2   |  Nqtl_y   | Notu_y   |   Notu_y_g  |
+|-----------|:-----:|:------:|:---------:|:--------:|:-----------:|
+| Joint     | >0    |  >0    |  >0       |  >0      |    0        |
+
+
+#    Indirect     g-->b-->y           ==> Nqtl_y=0, Notu_y>0, Notu_y_g>0, h2=0, b2>0
+#    Microbiome   b-->y               ==> Nqtl_y=0, Notu_y>0, Notu_y_g=0, h2=0, b2>0
+#    Independent  g-->y<--b           ==> Nqtl_y>0, Notu_y>0, Notu_y_g=0, h2>0, b2>0
+#    Recursve     g-->y<--b<--g       ==> Nqtl_y>0, Notu_y>0, Notu_y_g>0, h2>0, b2>0
+#    Genome       g-->y               ==> Nqtl_y>0, Notu_y=0, Notu_y_g=0, h2>0, b2=0
+
 
 ### Usage
 
