@@ -3,7 +3,7 @@
 #### M Pérez-Enciso (miguel.perez@uab.es) with help from LM Zingaretti
 
 ### Citation
-#### This is accompanying code to
+
 Opportunities and limits of using microbiome data for complex trait prediction. M. Pérez-Enciso, L.M. Zingaretti, Y. Ramayo-Caldas, G. de los Campos (submitted)
 
 ### Usage
@@ -50,9 +50,11 @@ A SimuBiome object contains:
 * **B**: actual, observed abundances. Note however that returned B will have some suffled abundances between individuals in the Recursive and the Indirect models. In addition, SimuBiome shuffles the order of individuals wrt genotypes matrix. Since there is no link between X genotype matrix and G, they belong to different experiments, this does not induce any change, it is done simply to avoid potential bias under repeated runs.
 * **gq**: vector of size Nind containing genetic contribution to **Y**
 * **gb**: vector of size Nind containing microbiome contribution to **y**
-* **b_otu**: Notu vector containing otu effects     
-b_qtl
-"qtl_list"     "otu_list"     "otu_qtl_list"
+* **b_otu**: Notu size vector containing causative otu effects     
+* **b_qtl**: Nqtl size vector containing causative snp effects     
+* **qtl_list**: 
+* **otu_list**:
+* **otu_qtl_list**:
 
 ### Sortcorr
 This function takes two vectors x and y and allows reordering y such that cor(x,reordered(y)) = rho, where rho is the desired correlation between x and y. This function is critical to reorder abundances such that a correlation between genotypic values and abundances is established. In so doing, a genetic basis of given abundances is mimicked without modifying the observed data. OTU reordering can be done within cluster of correlated abundances in order to preserve - to an extent - the covariance between different OTU abundances.
