@@ -2,10 +2,19 @@
 ### Simulation of complex phenotypes mediated by genome and/or microbiome.
 #### M Pérez-Enciso (miguel.perez@uab.es) with help from LM Zingaretti
 
+### Citation
+#### This is accompanying code to
+Opportunities and limits of using microbiome data for complex trait prediction. M. Pérez-Enciso, L.M. Zingaretti, Y. Ramayo-Caldas, G. de los Campos (submitted)
+
+### Usage
+
 https://miguelperezenciso.github.io/Simubiome/
 
-#### CITATION: This is accompanying code to
-Opportunities and limits of using microbiome data for complex trait prediction. M. Pérez-Enciso, L.M. Zingaretti, Y. Ramayo-Caldas, G. de los Campos (submitted)
+[Simubiome.Rmd](https://github.com/miguelperezenciso/Simubiome/blob/master/Simubiome.Rmd) contains list of commands and typical usage
+
+[simuscript.R](https://github.com/miguelperezenciso/Simubiome/blob/master/simuscript.R) 
+
+[simubiome.R](https://github.com/miguelperezenciso/Simubiome/blob/master/simubiome.R) contains all functions.
 
 ***
 
