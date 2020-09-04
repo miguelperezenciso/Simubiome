@@ -78,15 +78,11 @@ This function takes two vectors x and y and allows reordering y such that cor(x,
       return(iy)
     }
   
-    # repeatable results
-    set.seed(3)
+    set.seed(3)  # repeatable results
     x = rnorm(1000)
     y = rgamma(1000, 1, 1)
-    # -0.08020344
-    cor(x,y)
-    # 0.5104921
-    cor(x,y[sortCorr(x,y,rho=0.50)]) 
-    #  0.09558201
-    cor(x,y[sortCorr(x,y,rho=0.10)])  
+    cor(x,y)  # returns -0.08020344
+    cor(x,y[sortCorr(x,y,rho=0.50)])  # returns 0.5104921 
+    cor(x,y[sortCorr(x,y,rho=0.10)])  # returns 0.09558201
 
 **Enjoy!**
