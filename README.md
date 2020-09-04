@@ -84,5 +84,5 @@ This function takes two vectors x and y and allows reordering y such that cor(x,
     cor(x,y)  # returns -0.08020344
     cor(x,y[sortCorr(x,y,rho=0.50)])  # returns 0.5104921 
     cor(x,y[sortCorr(x,y,rho=0.10)])  # returns 0.09558201
-
+    cor(x,y[sortCorr(x,y,rho=0.10)])  # results vary as is stochastic algorithm 
 **Enjoy!**
