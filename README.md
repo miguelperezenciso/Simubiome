@@ -3,7 +3,7 @@
 
 ### Citation
 
-Opportunities and limits of using microbiome data for complex trait prediction. M. Pérez-Enciso, L.M. Zingaretti, Y. Ramayo-Caldas, G. de los Campos (submitted)
+Opportunities and limits of using microbiome data for complex trait prediction. M. Pérez-Enciso, L.M. Zingaretti, Y. Ramayo-Caldas, G. de los Campos (2021) Genetics Selection Evolution (in press).
 
 ### Usage
 
