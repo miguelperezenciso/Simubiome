@@ -1,4 +1,5 @@
-# Simubiome: Simulation of complex phenotypes mediated by genome and/or microbiome.
+# Simubiome
+## Simulation of complex phenotypes mediated by genome and/or microbiome.
 ### M Pérez-Enciso (miguel.perez@uab.es) with help from LM Zingaretti
 
 ### Citation
