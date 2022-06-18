@@ -13,6 +13,7 @@ set.seed(13)
 x = rnorm(1000)
 y = rnorm(1000)
 z = rgamma(1000,shape=2,rate=5)
-print(cor(x,y))
-print(cor(x,y[sortCorr(x,y,.3)]))
-print(cor(x,z[sortCorr(x,z,.6)]))
+print(cor(x,y)) # -0.002949039
+print(cor(x,y[sortCorr(x,y,.3)])) # 0.3127821
+print(cor(x,z[sortCorr(x,z,.6)])) # 0.5878888
+# voilà!
